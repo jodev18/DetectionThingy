@@ -124,7 +124,7 @@ public class MonitoringData extends AppCompatActivity {
 //                        searchKey,
 //                        getResources().getDrawable(R.drawable.ic_launcher_foreground)));
 
-                entries.add(new PieEntry((float) (getTotalDifference(listDiff).floatValue()),
+                entries.add(new PieEntry((getTotalDifference(listDiff).floatValue()),
                                 searchKey));
 
                 ArrayList<Integer> colors = new ArrayList<>();
@@ -263,7 +263,7 @@ public class MonitoringData extends AppCompatActivity {
         chart.setEntryLabelTextSize(12f);
     }
 
-    private Long getTotalDifference(List<Long> diffs){
+    private Double getTotalDifference(List<Long> diffs){
 
         Long totDiff = 0l;
 
@@ -271,7 +271,7 @@ public class MonitoringData extends AppCompatActivity {
             totDiff += diffs.get(i);
         }
 
-        return totDiff / 3600;
+        return Double.valueOf(totDiff.doubleValue() / 3600);
     }
 
     private void setData(int count, float range) {
