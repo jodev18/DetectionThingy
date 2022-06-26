@@ -12,6 +12,8 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -55,10 +57,16 @@ public class MonitoringData extends AppCompatActivity {
 
     ArrayList<PieEntry> entries = new ArrayList<>();
 
+    private ProgressBar prgLoad;
+    private TextView tvStat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring_data);
+
+        prgLoad = (ProgressBar)findViewById(R.id.prgLoadingData);
+        tvStat = (TextView)findViewById(R.id.tvLoadingStat);
 
         initializeChartView();
 
@@ -76,12 +84,19 @@ public class MonitoringData extends AppCompatActivity {
                 .url(url)
                 .build();
 
+        prgLoad.setVisibility(View.VISIBLE);
+        tvStat.setVisibility(TextView.VISIBLE);
+        tvStat.setText("Loading " + searchKey);
+
         htc.newCall(rq).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e("FAIL","Data fetch fail: " + e.getMessage());
 
                 Snackbar.make(chart,"Fetch from server failed.",Snackbar.LENGTH_LONG).show();
+
+                prgLoad.setVisibility(View.GONE);
+                tvStat.setVisibility(TextView.GONE);
             }
 
             @Override
@@ -154,6 +169,9 @@ public class MonitoringData extends AppCompatActivity {
                 chart.invalidate();
 
                 Log.d("Total difference " + searchKey,"DIFF:"+getTotalDifference(listDiff).toString());
+
+                prgLoad.setVisibility(View.GONE);
+                tvStat.setVisibility(TextView.GONE);
             }
         });
 
