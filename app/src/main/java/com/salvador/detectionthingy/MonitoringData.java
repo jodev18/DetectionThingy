@@ -44,10 +44,14 @@ import okhttp3.Response;
 
 public class MonitoringData extends AppCompatActivity {
 
+
     private PieChart chart;
     private SeekBar seekBarX, seekBarY;
     private TextView tvX, tvY;
     private String SERVER_URL_TV = "http://192.168.1.3/ska/data_fetch.php?itemkey=tv";
+    private String SERVER_URL_LAPTOP = "http://192.168.1.3/ska/data_fetch.php?itemkey=laptop";
+    private String SERVER_URL_CELLPHONE = "http://192.168.1.3/ska/data_fetch.php?itemkey=cell";
+
     private final OkHttpClient htc = new OkHttpClient();
 
     @Override
@@ -56,8 +60,17 @@ public class MonitoringData extends AppCompatActivity {
         setContentView(R.layout.activity_monitoring_data);
 
 //        initializeChartView();
+
+        fetchData(SERVER_URL_TV,"TV");
+        fetchData(SERVER_URL_LAPTOP,"Laptop");
+        fetchData(SERVER_URL_CELLPHONE,"Cellphone");
+
+    }
+
+    private void fetchData(String url,String searchKey){
+
         Request rq = new Request.Builder()
-                .url(SERVER_URL_TV)
+                .url(url)
                 .build();
 
         htc.newCall(rq).enqueue(new Callback() {
@@ -71,14 +84,14 @@ public class MonitoringData extends AppCompatActivity {
                 Gson gg = new Gson();
                 String respData = response.body().string();
 
-                Log.d("RAWDATA",respData);
+                Log.d("RAWDATA" + searchKey,respData);
 //        ResultDataSet rds = gg.fromJson(SampleData.getDataString(this), ResultDataSet.class);
                 DetectionData[] ddata = gg.fromJson(respData, DetectionData[].class);
 
                 List<Long> listDiff = new ArrayList<>();
 
                 for(int i=0;i<ddata.length;i++){
-                    Log.d("DATA",ddata[i].object_enum + "|" + ddata[i].confidence + "|" + ddata[i].img_timestamp);
+                    Log.d("DATA" +searchKey,ddata[i].object_enum + "|" + ddata[i].confidence + "|" + ddata[i].img_timestamp);
 
                     try {
                         if (i+1 < ddata.length){
@@ -90,10 +103,10 @@ public class MonitoringData extends AppCompatActivity {
 
                             if (cDiff <= 600){
                                 listDiff.add(cDiff);
-                                Log.d("DIFF","Difference: " + cDiff.toString());
+                                Log.d("DIFF " + searchKey,"Difference: " + cDiff.toString());
                             }
                             else{
-                                Log.d("THRES_LIMIT","Disregarded due to long time gap:" + cDiff.toString());
+                                Log.d("THRES_LIMIT " + searchKey,"Disregarded due to long time gap:" + cDiff.toString());
                             }
                         }
                         else{
@@ -104,10 +117,9 @@ public class MonitoringData extends AppCompatActivity {
                     }
                 }
 
-                Log.d("Total difference","DIFF:"+getTotalDifference(listDiff).toString());
+                Log.d("Total difference " + searchKey,"DIFF:"+getTotalDifference(listDiff).toString());
             }
         });
-
 
     }
 
