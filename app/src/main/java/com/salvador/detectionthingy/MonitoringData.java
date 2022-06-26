@@ -199,9 +199,9 @@ public class MonitoringData extends AppCompatActivity {
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
 
         l.setDrawInside(false);
-        l.setXEntrySpace(14f);
+        l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
-        l.setYOffset(6f);
+        l.setYOffset(3f);
 
         // entry label styling
         chart.setEntryLabelColor(Color.WHITE);
@@ -280,11 +280,11 @@ public class MonitoringData extends AppCompatActivity {
     private SpannableString generateCenterSpannableText() {
 
         SpannableString s = new SpannableString("Behavior Detection\nwith Tensorflow");
-        s.setSpan(new RelativeSizeSpan(2.4f), 0, 18, 0);
+        s.setSpan(new RelativeSizeSpan(1.7f), 0, 18, 0);
         s.setSpan(new StyleSpan(Typeface.NORMAL), 18, s.length() - 15, 0);
 
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 19, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(1.3f), 19, s.length() - 15, 0);
+        s.setSpan(new RelativeSizeSpan(.8f), 19, s.length() - 15, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 15, s.length(), 0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 15, s.length(), 0);
         return s;
