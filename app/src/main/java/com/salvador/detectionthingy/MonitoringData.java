@@ -131,11 +131,13 @@ public class MonitoringData extends AppCompatActivity {
 
                 PieDataSet dataSet = new PieDataSet(entries, "Time Spent");
                 dataSet.setDrawValues(true);
+                dataSet.setValueTextColor(Color.BLACK);
                 dataSet.setColors(colors);
 
                 PieData data = new PieData(dataSet);
 
                 chart.setData(data);
+                chart.setHighlightPerTapEnabled(true);
 
                 data.setValueFormatter(new PercentFormatter());
 
