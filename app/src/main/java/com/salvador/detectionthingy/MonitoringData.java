@@ -54,12 +54,16 @@ public class MonitoringData extends AppCompatActivity {
 
     private final OkHttpClient htc = new OkHttpClient();
 
+    ArrayList<PieEntry> entries = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring_data);
 
 //        initializeChartView();
+
+        entries.clear();
 
         fetchData(SERVER_URL_TV,"TV");
         fetchData(SERVER_URL_LAPTOP,"Laptop");
@@ -116,6 +120,20 @@ public class MonitoringData extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+                entries.add(new PieEntry((float) (getTotalDifference(listDiff).floatValue()),
+                        searchKey,
+                        getResources().getDrawable(R.drawable.ic_launcher_foreground)));
+                PieDataSet dataSet = new PieDataSet(entries, "Time Spent");
+                PieData data = new PieData(dataSet);
+
+                chart.setData(data);
+
+                data.setValueFormatter(new PercentFormatter());
+
+                data.setValueTextSize(11f);
+                data.setValueTextColor(Color.WHITE);
+
+                chart.invalidate();
 
                 Log.d("Total difference " + searchKey,"DIFF:"+getTotalDifference(listDiff).toString());
             }
@@ -124,51 +142,52 @@ public class MonitoringData extends AppCompatActivity {
     }
 
     private void initializeChartView(){
+
         tvX = findViewById(R.id.tvXMax);
         tvY = findViewById(R.id.tvYMax);
 
         seekBarX = findViewById(R.id.seekBar1);
         seekBarY = findViewById(R.id.seekBar2);
 
-        seekBarX.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvX.setText(String.valueOf(seekBarX.getProgress()));
-                tvY.setText(String.valueOf(seekBarY.getProgress()));
-
-                setData(seekBarX.getProgress(), seekBarY.getProgress());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarY.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                tvX.setText(String.valueOf(seekBarX.getProgress()));
-                tvY.setText(String.valueOf(seekBarY.getProgress()));
-
-                setData(seekBarX.getProgress(), seekBarY.getProgress());
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+//        seekBarX.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//                tvX.setText(String.valueOf(seekBarX.getProgress()));
+//                tvY.setText(String.valueOf(seekBarY.getProgress()));
+//
+//                setData(seekBarX.getProgress(), seekBarY.getProgress());
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
+//
+//        seekBarY.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//                tvX.setText(String.valueOf(seekBarX.getProgress()));
+//                tvY.setText(String.valueOf(seekBarY.getProgress()));
+//
+//                setData(seekBarX.getProgress(), seekBarY.getProgress());
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
 
 //        seekBarX.setOnSeekBarChangeListener(this);
 //        seekBarY.setOnSeekBarChangeListener(this);
@@ -239,7 +258,6 @@ public class MonitoringData extends AppCompatActivity {
     }
 
     private void setData(int count, float range) {
-        ArrayList<PieEntry> entries = new ArrayList<>();
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
@@ -249,7 +267,7 @@ public class MonitoringData extends AppCompatActivity {
                     getResources().getDrawable(R.drawable.ic_launcher_foreground)));
         }
 
-        PieDataSet dataSet = new PieDataSet(entries, "Election Results");
+        PieDataSet dataSet = new PieDataSet(entries, "Time Spent");
 
 
         dataSet.setDrawIcons(false);
