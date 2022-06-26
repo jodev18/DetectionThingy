@@ -21,10 +21,13 @@ import android.widget.TextView;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.google.android.material.snackbar.Snackbar;
@@ -244,6 +247,19 @@ public class MonitoringData extends AppCompatActivity {
         chart.setEntryLabelColor(Color.WHITE);
 //        chart.setEntryLabelTypeface(tfRegular);
         chart.setEntryLabelTextSize(12f);
+
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                Snackbar.make(chart,"You spent " + Float.valueOf(((PieEntry)e)
+                        .getValue()).toString() + " hrs.",Snackbar.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
     }
 
     private Double getTotalDifference(List<Long> diffs){
