@@ -199,6 +199,7 @@ public class MonitoringData extends AppCompatActivity {
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
 
         l.setDrawInside(false);
+        l.setTextSize(20f);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
         l.setYOffset(20f);
