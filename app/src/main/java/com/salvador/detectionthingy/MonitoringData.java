@@ -120,9 +120,12 @@ public class MonitoringData extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+//                entries.add(new PieEntry((float) (getTotalDifference(listDiff).floatValue()),
+//                        searchKey,
+//                        getResources().getDrawable(R.drawable.ic_launcher_foreground)));
+
                 entries.add(new PieEntry((float) (getTotalDifference(listDiff).floatValue()),
-                        searchKey,
-                        getResources().getDrawable(R.drawable.ic_launcher_foreground)));
+                                searchKey));
 
                 ArrayList<Integer> colors = new ArrayList<>();
 
