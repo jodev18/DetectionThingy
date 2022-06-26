@@ -132,9 +132,9 @@ public class MonitoringData extends AppCompatActivity {
                 for (int c : ColorTemplate.PASTEL_COLORS)
                     colors.add(c);
 
-                PieDataSet dataSet = new PieDataSet(entries, "Time Spent");
+                PieDataSet dataSet = new PieDataSet(entries, "Time Spent (s)");
                 dataSet.setDrawValues(true);
-                dataSet.setValueTextColor(Color.BLACK);
+//                dataSet.setValueTextColor(Color.BLACK);
 //                dataSet.setValueFormatter(new PercentFormatter(chart));
                 dataSet.setColors(colors);
 
@@ -143,6 +143,7 @@ public class MonitoringData extends AppCompatActivity {
                 chart.setData(data);
                 chart.setHighlightPerTapEnabled(true);
                 chart.setExtraOffsets(35f,35f,35f,35f);
+                chart.setUsePercentValues(false);
 
 //                data.setValueFormatter(new PercentFormatter());
 
