@@ -199,10 +199,10 @@ public class MonitoringData extends AppCompatActivity {
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
 
         l.setDrawInside(false);
-        l.setTextSize(20f);
+        l.setTextSize(16f);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
-        l.setYOffset(20f);
+        l.setYOffset(30f);
 
         // entry label styling
         chart.setEntryLabelColor(Color.WHITE);
