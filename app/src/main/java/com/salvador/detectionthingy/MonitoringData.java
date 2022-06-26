@@ -144,7 +144,7 @@ public class MonitoringData extends AppCompatActivity {
                 chart.setHighlightPerTapEnabled(true);
                 chart.setExtraOffsets(35f,35f,35f,35f);
 
-                data.setValueFormatter(new PercentFormatter());
+//                data.setValueFormatter(new PercentFormatter());
 
                 data.setValueTextSize(18f);
                 data.setValueTextColor(Color.WHITE);
