@@ -46,8 +46,6 @@ public class MonitoringData extends AppCompatActivity {
 
 
     private PieChart chart;
-    private SeekBar seekBarX, seekBarY;
-    private TextView tvX, tvY;
     private String SERVER_URL_TV = "http://192.168.1.3/ska/data_fetch.php?itemkey=tv";
     private String SERVER_URL_LAPTOP = "http://192.168.1.3/ska/data_fetch.php?itemkey=laptop";
     private String SERVER_URL_CELLPHONE = "http://192.168.1.3/ska/data_fetch.php?itemkey=cell";
@@ -160,55 +158,6 @@ public class MonitoringData extends AppCompatActivity {
 
     private void initializeChartView(){
 
-        tvX = findViewById(R.id.tvXMax);
-        tvY = findViewById(R.id.tvYMax);
-
-        seekBarX = findViewById(R.id.seekBar1);
-        seekBarY = findViewById(R.id.seekBar2);
-
-//        seekBarX.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-//                tvX.setText(String.valueOf(seekBarX.getProgress()));
-//                tvY.setText(String.valueOf(seekBarY.getProgress()));
-//
-//                setData(seekBarX.getProgress(), seekBarY.getProgress());
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
-//
-//        seekBarY.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-//                tvX.setText(String.valueOf(seekBarX.getProgress()));
-//                tvY.setText(String.valueOf(seekBarY.getProgress()));
-//
-//                setData(seekBarX.getProgress(), seekBarY.getProgress());
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
-
-//        seekBarX.setOnSeekBarChangeListener(this);
-//        seekBarY.setOnSeekBarChangeListener(this);
-
         chart = findViewById(R.id.chart1);
         chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
@@ -216,7 +165,6 @@ public class MonitoringData extends AppCompatActivity {
 
         chart.setDragDecelerationFrictionCoef(0.95f);
 
-//        chart.setCenterTextTypeface(tfLight);
         chart.setCenterText(generateCenterSpannableText());
 
         chart.setDrawHoleEnabled(true);
@@ -236,26 +184,23 @@ public class MonitoringData extends AppCompatActivity {
         chart.setRotationEnabled(true);
         chart.setHighlightPerTapEnabled(true);
 
-        // chart.setUnit(" €");
-        // chart.setDrawUnitsInChart(true);
+//         chart.setUnit("hrs");
+//         chart.setDrawUnitsInChart(true);
 
         // add a selection listener
 //        chart.setOnChartValueSelectedListener(this);
-
-        seekBarX.setProgress(4);
-        seekBarY.setProgress(10);
 
         chart.animateY(1400, Easing.EaseInOutQuad);
         // chart.spin(2000, 0, 360);
 
         Legend l = chart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(false);
+        l.setDrawInside(true);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
-        l.setYOffset(0f);
+        l.setYOffset(6f);
 
         // entry label styling
         chart.setEntryLabelColor(Color.WHITE);
