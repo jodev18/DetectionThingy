@@ -194,12 +194,13 @@ public class MonitoringData extends AppCompatActivity {
         // chart.spin(2000, 0, 360);
 
         Legend l = chart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
+
         l.setDrawInside(false);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
+        l.setXEntrySpace(14f);
+        l.setYEntrySpace(7f);
         l.setYOffset(6f);
 
         // entry label styling
