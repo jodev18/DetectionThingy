@@ -91,7 +91,7 @@ public class MonitoringData extends AppCompatActivity {
                 List<Long> listDiff = new ArrayList<>();
 
                 for(int i=0;i<ddata.length;i++){
-                    Log.d("DATA" +searchKey,ddata[i].object_enum + "|" + ddata[i].confidence + "|" + ddata[i].img_timestamp);
+//                    Log.d("DATA" +searchKey,ddata[i].object_enum + "|" + ddata[i].confidence + "|" + ddata[i].img_timestamp);
 
                     try {
                         if (i+1 < ddata.length){
