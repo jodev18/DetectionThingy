@@ -159,7 +159,7 @@ public class MonitoringData extends AppCompatActivity {
     private void initializeChartView(){
 
         chart = findViewById(R.id.chart1);
-        chart.setUsePercentValues(true);
+//        chart.setUsePercentValues(true);
         chart.getDescription().setEnabled(false);
         chart.setExtraOffsets(5, 10, 5, 5);
 
@@ -197,7 +197,7 @@ public class MonitoringData extends AppCompatActivity {
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(true);
+        l.setDrawInside(false);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
         l.setYOffset(6f);
