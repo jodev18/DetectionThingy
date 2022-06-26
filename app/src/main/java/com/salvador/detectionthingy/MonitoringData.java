@@ -180,8 +180,13 @@ public class MonitoringData extends AppCompatActivity {
 
                 Log.d("Total difference " + searchKey,"DIFF:"+getTotalDifference(listDiff).toString());
 
-                prgLoad.setVisibility(View.GONE);
-                tvStat.setVisibility(TextView.GONE);
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        prgLoad.setVisibility(View.GONE);
+                        tvStat.setVisibility(TextView.GONE);
+                    }
+                });
             }
         });
 
