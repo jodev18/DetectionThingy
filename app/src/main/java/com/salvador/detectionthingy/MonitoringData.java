@@ -130,6 +130,7 @@ public class MonitoringData extends AppCompatActivity {
                     colors.add(c);
 
                 PieDataSet dataSet = new PieDataSet(entries, "Time Spent");
+                dataSet.setDrawValues(true);
                 dataSet.setColors(colors);
 
                 PieData data = new PieData(dataSet);
