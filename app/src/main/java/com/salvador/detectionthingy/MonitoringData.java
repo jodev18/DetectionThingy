@@ -123,7 +123,15 @@ public class MonitoringData extends AppCompatActivity {
                 entries.add(new PieEntry((float) (getTotalDifference(listDiff).floatValue()),
                         searchKey,
                         getResources().getDrawable(R.drawable.ic_launcher_foreground)));
+
+                ArrayList<Integer> colors = new ArrayList<>();
+
+                for (int c : ColorTemplate.PASTEL_COLORS)
+                    colors.add(c);
+
                 PieDataSet dataSet = new PieDataSet(entries, "Time Spent");
+                dataSet.setColors(colors);
+
                 PieData data = new PieData(dataSet);
 
                 chart.setData(data);
