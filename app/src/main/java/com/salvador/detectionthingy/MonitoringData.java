@@ -280,7 +280,7 @@ public class MonitoringData extends AppCompatActivity {
     private SpannableString generateCenterSpannableText() {
 
         SpannableString s = new SpannableString("Activity in hrs");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 18, 0);
+        s.setSpan(new RelativeSizeSpan(1.7f), 0, s.length(), 0);
 //        s.setSpan(new StyleSpan(Typeface.NORMAL), 18, s.length() - 15, 0);
 
 //        s.setSpan(new ForegroundColorSpan(Color.GRAY), 19, s.length() - 15, 0);
