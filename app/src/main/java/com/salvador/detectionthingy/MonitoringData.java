@@ -86,9 +86,15 @@ public class MonitoringData extends AppCompatActivity {
                             Date d1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ddata[i].img_timestamp);
                             Date d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ddata[i+1].img_timestamp);
 
-                            Long cDiff = Long.valueOf(d2.getTime()-d1.getTime());
-                            listDiff.add(cDiff);
-                            Log.d("DIFF","Difference: " + cDiff.toString());
+                            Long cDiff = Long.valueOf(d2.getTime()-d1.getTime()) / 1000;
+
+                            if (cDiff <= 600){
+                                listDiff.add(cDiff);
+                                Log.d("DIFF","Difference: " + cDiff.toString());
+                            }
+                            else{
+                                Log.d("THRES_LIMIT","Disregarded due to long time gap:" + cDiff.toString());
+                            }
                         }
                         else{
                             break;
@@ -214,7 +220,7 @@ public class MonitoringData extends AppCompatActivity {
         Long totDiff = 0l;
 
         for(int i=0;i<diffs.size();i++){
-            totDiff += diffs.get(i) / 1000;
+            totDiff += diffs.get(i);
         }
 
         return totDiff;
