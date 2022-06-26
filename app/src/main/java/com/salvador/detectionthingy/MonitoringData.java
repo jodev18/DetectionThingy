@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.security.identity.ResultData;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -60,10 +61,14 @@ public class MonitoringData extends AppCompatActivity {
     private ProgressBar prgLoad;
     private TextView tvStat;
 
+    private Handler h;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring_data);
+
+        h = new Handler(this.getMainLooper());
 
         prgLoad = (ProgressBar)findViewById(R.id.prgLoadingData);
         tvStat = (TextView)findViewById(R.id.tvLoadingStat);
@@ -95,8 +100,13 @@ public class MonitoringData extends AppCompatActivity {
 
                 Snackbar.make(chart,"Fetch from server failed.",Snackbar.LENGTH_LONG).show();
 
-                prgLoad.setVisibility(View.GONE);
-                tvStat.setVisibility(TextView.GONE);
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        prgLoad.setVisibility(View.GONE);
+                        tvStat.setVisibility(TextView.GONE);
+                    }
+                });
             }
 
             @Override
