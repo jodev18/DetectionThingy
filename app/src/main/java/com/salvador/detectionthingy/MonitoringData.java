@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.salvador.detectionthingy.data.DetectionData;
 import com.salvador.detectionthingy.data.ResultDataSet;
@@ -79,6 +80,8 @@ public class MonitoringData extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e("FAIL","Data fetch fail: " + e.getMessage());
+
+                Snackbar.make(chart,"Fetch from server failed.",Snackbar.LENGTH_LONG).show();
             }
 
             @Override
