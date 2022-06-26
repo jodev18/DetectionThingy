@@ -271,7 +271,7 @@ public class MonitoringData extends AppCompatActivity {
             totDiff += diffs.get(i);
         }
 
-        return totDiff;
+        return totDiff / 3600;
     }
 
     private void setData(int count, float range) {
