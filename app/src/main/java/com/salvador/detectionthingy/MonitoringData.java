@@ -63,7 +63,7 @@ public class MonitoringData extends AppCompatActivity {
         htc.newCall(rq).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
+                Log.e("FAIL","Data fetch fail: " + e.getMessage());
             }
 
             @Override
