@@ -91,7 +91,7 @@ public class MonitoringData extends AppCompatActivity {
 
         prgLoad.setVisibility(View.VISIBLE);
         tvStat.setVisibility(TextView.VISIBLE);
-        tvStat.setText("Loading " + searchKey);
+        tvStat.setText("Loading data...");
 
         htc.newCall(rq).enqueue(new Callback() {
             @Override
