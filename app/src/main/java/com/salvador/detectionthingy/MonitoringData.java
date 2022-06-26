@@ -81,7 +81,6 @@ public class MonitoringData extends AppCompatActivity {
                     Log.d("DATA",ddata[i].object_enum + "|" + ddata[i].confidence + "|" + ddata[i].img_timestamp);
 
                     try {
-
                         if (i+1 < ddata.length){
 
                             Date d1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ddata[i].img_timestamp);
