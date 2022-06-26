@@ -103,7 +103,7 @@ public class MonitoringData extends AppCompatActivity {
 
                             if (cDiff <= 600){
                                 listDiff.add(cDiff);
-                                Log.d("DIFF " + searchKey,"Difference: " + cDiff.toString());
+//                                Log.d("DIFF " + searchKey,"Difference: " + cDiff.toString());
                             }
                             else{
                                 Log.d("THRES_LIMIT " + searchKey,"Disregarded due to long time gap:" + cDiff.toString());
