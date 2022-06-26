@@ -61,7 +61,7 @@ public class MonitoringData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring_data);
 
-//        initializeChartView();
+        initializeChartView();
 
         entries.clear();
 
