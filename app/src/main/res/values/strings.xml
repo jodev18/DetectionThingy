@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DetectionThingy</string>
+    <string name="dash">--</string>
+    <string name="sample_data"></string>
+</resources>
