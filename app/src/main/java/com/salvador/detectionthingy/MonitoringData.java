@@ -118,9 +118,7 @@ public class MonitoringData extends AppCompatActivity {
                 if(secCounter % 20 == 0){
                     Snackbar.make(tvStat,"20 seconds has passed",Snackbar.LENGTH_SHORT).show();
                 }
-                else{
                     h.postDelayed(this,1000);
-                }
             }
         },1000);
     }
