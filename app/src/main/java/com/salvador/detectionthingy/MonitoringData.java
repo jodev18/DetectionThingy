@@ -114,6 +114,7 @@ public class MonitoringData extends AppCompatActivity {
             @Override
             public void run() {
                 Log.d("DATA",secCounter.toString());
+                secCounter++;
                 if(secCounter % 20 == 0){
                     Snackbar.make(tvStat,"20 seconds has passed",Snackbar.LENGTH_SHORT).show();
                 }
