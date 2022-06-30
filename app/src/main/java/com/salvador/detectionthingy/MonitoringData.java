@@ -66,6 +66,8 @@ public class MonitoringData extends AppCompatActivity {
 
     private Handler h;
 
+    Long secCounter = 0l;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,10 +82,46 @@ public class MonitoringData extends AppCompatActivity {
 
         entries.clear();
 
-        fetchData(SERVER_URL_TV,"TV");
-        fetchData(SERVER_URL_LAPTOP,"Laptop");
-        fetchData(SERVER_URL_CELLPHONE,"Cellphone");
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fetchData(SERVER_URL_TV,"TV");
+            }
+        },500);
 
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fetchData(SERVER_URL_LAPTOP,"Laptop");
+            }
+        },1000);
+
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fetchData(SERVER_URL_CELLPHONE,"Cellphone");
+            }
+        },1500);
+
+
+        startTimer();
+
+    }
+
+    private void startTimer(){
+
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("DATA",secCounter.toString());
+                if(secCounter % 20 == 0){
+                    Snackbar.make(tvStat,"20 seconds has passed",Snackbar.LENGTH_SHORT).show();
+                }
+                else{
+                    h.postDelayed(this,1000);
+                }
+            }
+        },1000);
     }
 
     private void fetchData(String url,String searchKey){
